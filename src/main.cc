@@ -17,7 +17,7 @@
 
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+int orig_main(int argc, char *argv[]) {
   bloaty::Options options;
   bloaty::OutputOptions output_options;
   std::string error;
