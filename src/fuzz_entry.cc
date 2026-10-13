@@ -51,14 +51,19 @@ class StringPieceInputFileFactory : public InputFileFactory {
   }
 };
 
-void RunBloaty(string_view data, const std::string& data_source) {
+void RunBloaty(string_view data) {
   StringPieceInputFileFactory factory(data);
-  bloaty::RollupOutput output;
-  bloaty::Options options;
-  std::string error;
-  options.add_data_source(data_source);
-  options.add_filename("dummy_filename");
-  bloaty::BloatyMain(options, factory, &output, &error);
+
+  // Try all of the data sources.
+  for (const char* data_source : {"segments", "sections", "symbols",
+                                  "compileunits", "inlines", "armembers"}) {
+    bloaty::RollupOutput output;
+    bloaty::Options options;
+    std::string error;
+    options.add_data_source(data_source);
+    options.add_filename("dummy_filename");
+    bloaty::BloatyMain(options, factory, &output, &error);
+  }
 }
 
 }  // namespace bloaty
