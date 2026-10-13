@@ -244,6 +244,7 @@ add_library(libbloaty STATIC
     src/dwarf_constants.h
     src/eh_frame.cc
     src/elf.cc
+    src/fuzz_entry.cc
     src/macho.cc
     src/pe.cc
     third_party/lief_pe/pe_structures.h
